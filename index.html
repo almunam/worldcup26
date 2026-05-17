@@ -123,7 +123,7 @@
   .btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
   .btn.ghost { background: transparent; }
 
-  .selector-panel, .result-card, .groups-panel, .fixture-panel, .logic-panel {
+  .selector-panel, .result-card, .groups-panel, .fixture-panel, .logic-panel, .bracket-panel {
     background: rgba(255, 255, 255, 0.88);
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -318,7 +318,7 @@
   .tag.red { background: var(--red-soft); color: var(--red); border-color: #f2b9bf; }
   .tag.gold { background: var(--gold-soft); color: var(--gold); border-color: #efd27c; }
 
-  .groups-panel, .fixture-panel, .logic-panel { padding: clamp(18px, 4vw, 28px); margin-top: 20px; }
+  .groups-panel, .fixture-panel, .logic-panel, .bracket-panel { padding: clamp(18px, 4vw, 28px); margin-top: 20px; }
   .panel-head { display: flex; justify-content: space-between; align-items: end; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
   .panel-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.5px; }
   .panel-head p { color: var(--subtext); font-size: 14px; max-width: 680px; line-height: 1.5; }
@@ -386,6 +386,89 @@
   summary { cursor: pointer; font-weight: 800; }
   .logic-list { margin: 12px 0 0 18px; color: var(--subtext); line-height: 1.7; }
 
+  /* Bracket Styles */
+  .bracket-panel { display: none; }
+  .bracket-panel.visible { display: block; }
+
+  .bracket-container {
+    overflow-x: auto;
+    background: linear-gradient(135deg, #0f1729 0%, #1a2942 100%);
+    border-radius: 16px;
+    padding: 24px;
+    min-height: 600px;
+    position: relative;
+  }
+
+  .bracket-svg {
+    min-width: 100%;
+    height: auto;
+  }
+
+  .bracket-stage {
+    display: inline-block;
+    margin-right: 40px;
+    vertical-align: top;
+    min-width: 180px;
+  }
+
+  .bracket-stage-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .bracket-matches {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bracket-match {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(15, 111, 255, 0.3);
+    border-radius: 10px;
+    padding: 8px;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bracket-match.active {
+    background: rgba(15, 111, 255, 0.15);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px rgba(15, 111, 255, 0.3);
+  }
+
+  .bracket-match.winner {
+    background: rgba(15, 159, 110, 0.15);
+    border-color: var(--green);
+  }
+
+  .bracket-team {
+    font-size: 13px;
+    padding: 4px 8px;
+    color: #e0e7ff;
+    font-weight: 600;
+  }
+
+  .bracket-team.highlighted {
+    background: rgba(15, 111, 255, 0.3);
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  .bracket-vs {
+    font-size: 10px;
+    color: #64748b;
+    text-align: center;
+    padding: 2px 0;
+  }
+
   footer {
     text-align: center;
     margin-top: 28px;
@@ -398,6 +481,8 @@
     .stages-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .fixture-card { grid-template-columns: 1fr; }
     .fixture-round { justify-self: start; }
+    .bracket-container { padding: 16px; }
+    .bracket-stage { margin-right: 20px; }
   }
 
   @media (max-width: 600px) {
@@ -410,6 +495,7 @@
     .top-actions .btn { width: 100%; }
     .panel-head { align-items: start; }
     .matchup-header { justify-content: flex-start; }
+    .bracket-stage { min-width: 140px; margin-right: 12px; }
   }
 
   @media (max-width: 380px) {
@@ -426,6 +512,7 @@
     <p class="subtitle">Pick two teams to see whether they can meet, the earliest possible stage, and the exact bracket logic behind the answer.</p>
     <div class="top-actions">
       <button class="btn primary" onclick="document.getElementById('checker').scrollIntoView()">Check matchup</button>
+      <button class="btn" onclick="document.getElementById('bracket').scrollIntoView()">View bracket</button>
       <button class="btn" onclick="document.getElementById('fixtures').scrollIntoView()">See whole fixture</button>
       <button class="btn ghost" onclick="document.getElementById('logic').scrollIntoView()">Logic notes</button>
     </div>
@@ -465,6 +552,18 @@
     <h3 class="section-title">Stage-by-stage possibility</h3>
     <div class="stages-grid" id="stagesGrid"></div>
     <div class="context-grid" id="contextGrid"></div>
+  </section>
+
+  <section class="bracket-panel" id="bracket" aria-labelledby="bracket-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="bracket-title">Tournament Bracket</h2>
+        <p id="bracket-subtitle">Showing how your selected teams can progress through the tournament.</p>
+      </div>
+    </div>
+    <div class="bracket-container" id="bracketContainer">
+      <div style="color: #94a3b8; text-align: center; padding: 40px 20px;">Select two teams to view the bracket path</div>
+    </div>
   </section>
 
   <section class="groups-panel" id="groups" aria-labelledby="groups-title">
@@ -508,13 +607,13 @@
         <li>Same group: the teams are guaranteed to meet in the group stage.</li>
         <li>Different groups: the checker tests every published Round of 32 slot, then follows the bracket tree through Round of 16, quarterfinals, semifinals, and final.</li>
         <li>Third-place entries are conditional because only eight of twelve third-place teams advance, and their exact Round of 32 placement depends on the final set of qualifying third-place groups.</li>
-        <li>“Possible” means a bracket path exists. It does not predict that either team will qualify or win matches.</li>
+        <li>"Possible" means a bracket path exists. It does not predict that either team will qualify or win matches.</li>
       </ul>
     </details>
   </section>
 
   <footer>
-    FIFA World Cup 2026 matchup checker. Static HTML, CSS, and JavaScript. Last updated May 8, 2026.
+    FIFA World Cup 2026 matchup checker. Static HTML, CSS, and JavaScript. Last updated May 17, 2026.
   </footer>
 </div>
 
@@ -655,7 +754,7 @@ function checkMatchup() {
   if (res.sameGroup) {
     verdictText.innerHTML = `<strong>Guaranteed group-stage match.</strong> ${a} and ${b} are both in Group ${res.ga}. Later knockout rematches may also be possible depending on final standings.`;
   } else if (res.possible) {
-    verdictText.innerHTML = `<strong>Possible.</strong> Earliest possible meeting: <strong>${res.earliest.name}</strong>. This means a valid bracket path exists, not that the matchup is predicted.`;
+    verdictText.innerHTML = `<strong>Possible.</strong> Earliest possible meeting: <strong>${res.earliest.name}</strong>. This means a valid bracket path exists, not that the matchup is predicted to happen.`;
   } else {
     verdictText.innerHTML = `<strong>No valid direct bracket path found.</strong> This should be rare. Check the data source or bracket slots.`;
   }
@@ -685,6 +784,9 @@ function checkMatchup() {
     </div>
   `;
   card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  
+  // Render bracket
+  renderBracketForMatchup(a, b, res);
 }
 
 function explainResult(res) {
@@ -692,6 +794,80 @@ function explainResult(res) {
   const r32 = r32Possible(res.ga, res.gb);
   if (r32) return `There is at least one Round of 32 slot pairing that can contain Group ${res.ga} and Group ${res.gb}. Third-place paths remain conditional.`;
   return `No Round of 32 pairing directly joins these groups, so the earliest valid meeting comes when their bracket branches merge: ${res.earliest.name}.`;
+}
+
+function renderBracketForMatchup(teamA, teamB, matchupData) {
+  const bracket = document.getElementById("bracket");
+  const bracketSubtitle = document.getElementById("bracket-subtitle");
+  bracket.classList.add("visible");
+  bracketSubtitle.textContent = `Possible paths for ${teamA} vs ${teamB}`;
+  
+  const container = document.getElementById("bracketContainer");
+  const ga = teamInfo[teamA].group;
+  const gb = teamInfo[teamB].group;
+  
+  // Build bracket HTML
+  let html = '<div style="overflow-x: auto; color: white;">';
+  
+  // Group Stage
+  if (matchupData.sameGroup) {
+    html += `
+      <div class="bracket-stage">
+        <div class="bracket-stage-title">GROUP STAGE</div>
+        <div class="bracket-matches">
+          <div class="bracket-match winner">
+            <div class="bracket-team highlighted">${teamA}</div>
+            <div class="bracket-vs">vs</div>
+            <div class="bracket-team highlighted">${teamB}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    html += `
+      <div class="bracket-stage">
+        <div class="bracket-stage-title">GROUP STAGE</div>
+        <div class="bracket-matches">
+          <div class="bracket-match">
+            <div class="bracket-team highlighted">${teamA}</div>
+            <div class="bracket-vs">Group ${ga}</div>
+          </div>
+          <div class="bracket-match">
+            <div class="bracket-team highlighted">${teamB}</div>
+            <div class="bracket-vs">Group ${gb}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Knockout stages
+  if (!matchupData.sameGroup && matchupData.possible) {
+    const koStages = ["r32", "r16", "qf", "sf", "final"];
+    koStages.forEach(stageId => {
+      const stage = STAGES.find(s => s.id === stageId);
+      const isActive = matchupData.statuses[stageId] === "yes" || matchupData.statuses[stageId] === "guaranteed";
+      const isPossible = matchupData.statuses[stageId] !== "no";
+      
+      if (isPossible) {
+        html += `
+          <div class="bracket-stage">
+            <div class="bracket-stage-title">${stage.name.toUpperCase()}</div>
+            <div class="bracket-matches">
+              <div class="bracket-match ${isActive ? 'active' : ''}">
+                <div class="bracket-team ${isActive ? 'highlighted' : ''}">${teamA}</div>
+                <div class="bracket-vs">vs</div>
+                <div class="bracket-team ${isActive ? 'highlighted' : ''}">${teamB}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    });
+  }
+  
+  html += '</div>';
+  container.innerHTML = html;
 }
 
 function populateSelects() {
