@@ -26,10 +26,17 @@
     --gold: #9a6a00;
     --gold-soft: #fff7d6;
     --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    --bk-bg: #f0f4fa;
+    --bk-card: #ffffff;
+    --bk-border: #d4dcea;
+    --bk-text: #1a2540;
+    --bk-muted: #7a8faf;
+    --bk-highlight-a: #0f6fff;
+    --bk-highlight-b: #d97706;
+    --bk-connector: #c2cfe0;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -60,10 +67,7 @@
     padding: clamp(20px, 4vw, 42px) 16px 64px;
   }
 
-  header {
-    text-align: center;
-    margin-bottom: 26px;
-  }
+  header { text-align: center; margin-bottom: 26px; }
 
   .title-label {
     display: inline-flex;
@@ -87,7 +91,6 @@
     line-height: 0.9;
     letter-spacing: 1px;
   }
-
   h1 span { color: var(--accent); }
 
   .subtitle {
@@ -118,7 +121,6 @@
     cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   }
-
   .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08); }
   .btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
   .btn.ghost { background: transparent; }
@@ -131,10 +133,7 @@
     backdrop-filter: blur(8px);
   }
 
-  .selector-panel {
-    padding: clamp(18px, 4vw, 30px);
-    margin-bottom: 20px;
-  }
+  .selector-panel { padding: clamp(18px, 4vw, 30px); margin-bottom: 20px; }
 
   .selector-row {
     display: grid;
@@ -163,7 +162,6 @@
     padding: 10px 14px;
     outline: none;
   }
-
   select:focus, input[type="search"]:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 4px rgba(15, 111, 255, 0.12);
@@ -192,10 +190,9 @@
 
   .result-card {
     display: none;
-    padding: clamp(18px, 4vw, 30px);
-    margin-bottom: 20px;
+    padding: clamp(14px, 3vw, 20px);
+    margin-bottom: 16px;
   }
-
   .result-card.visible { display: block; animation: fadeIn 0.25s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -205,12 +202,12 @@
     justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
   }
 
   .team-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(28px, 7vw, 44px);
+    font-size: clamp(24px, 5vw, 34px);
     line-height: 1;
   }
 
@@ -227,12 +224,11 @@
     display: flex;
     gap: 12px;
     align-items: flex-start;
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 18px;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
     border: 1px solid var(--border);
   }
-
   .verdict-bar.guaranteed { background: var(--gold-soft); border-color: #efd27c; }
   .verdict-bar.possible { background: var(--green-soft); border-color: #a8e8d0; }
   .verdict-bar.impossible { background: var(--red-soft); border-color: #f2b9bf; }
@@ -244,7 +240,6 @@
 
   .verdict-text { line-height: 1.55; color: var(--text); }
   .verdict-text strong { font-weight: 800; }
-
   .section-title {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -257,48 +252,43 @@
   .stages-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 10px;
+    gap: 8px;
   }
 
   .stage-chip {
-    min-height: 94px;
-    padding: 12px;
-    border-radius: 14px;
+    min-height: 72px;
+    padding: 9px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     background: var(--panel-soft);
   }
 
-  .stage-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 19px;
-    line-height: 1;
-  }
-
-  .stage-date { margin-top: 5px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--subtext); }
-  .stage-status { margin-top: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+  .stage-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; line-height: 1; }
+  .stage-date { margin-top: 4px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--subtext); }
+  .stage-status { margin-top: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; }
 
   .stage-chip.yes { background: var(--green-soft); border-color: #a8e8d0; }
   .stage-chip.yes .stage-status, .stage-chip.yes .stage-name { color: var(--green); }
+  .stage-chip.third-only { background: #f7f0df; border-color: #e7d4a8; }
+  .stage-chip.third-only .stage-status, .stage-chip.third-only .stage-name { color: var(--gold); }
   .stage-chip.guaranteed-stage { background: var(--gold-soft); border-color: #efd27c; }
   .stage-chip.guaranteed-stage .stage-status, .stage-chip.guaranteed-stage .stage-name { color: var(--gold); }
   .stage-chip.no { opacity: 0.75; background: #f8fafc; }
   .stage-chip.no .stage-status { color: var(--red); }
 
   .context-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 18px;
+    display: block;
+    margin-top: 12px;
   }
 
   .context-box {
     background: #fbfdff;
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 14px;
+    border-radius: 12px;
+    padding: 10px;
   }
-
   .context-box.full { grid-column: 1 / -1; }
+  .context-grid .context-box:not(.full) { display: none; }
   .cbox-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--subtext); text-transform: uppercase; letter-spacing: 1.6px; margin-bottom: 6px; }
   .cbox-val { color: var(--text); line-height: 1.5; }
 
@@ -386,103 +376,250 @@
   summary { cursor: pointer; font-weight: 800; }
   .logic-list { margin: 12px 0 0 18px; color: var(--subtext); line-height: 1.7; }
 
-  /* Bracket Styles */
-  .bracket-panel { display: none; }
-  .bracket-panel.visible { display: block; }
+  /* ===================== BRACKET ===================== */
+  .bracket-panel { padding: 0; overflow: hidden; }
+  .bracket-panel-head {
+    padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px) 0;
+  }
 
-  .bracket-container {
+  .bracket-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    padding-bottom: 12px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--subtext);
+    letter-spacing: 0.5px;
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 2px;
+    flex: 0 0 auto;
+  }
+  .legend-dot.team-a { background: var(--bk-highlight-a); }
+  .legend-dot.team-b { background: var(--bk-highlight-b); }
+  .legend-dot.both { background: linear-gradient(135deg, var(--bk-highlight-a) 50%, var(--bk-highlight-b) 50%); }
+  .legend-dot.conditional { background: transparent; border: 1px dashed #7a8faf; }
+
+  .bracket-scroll-wrap {
     overflow-x: auto;
-    background: linear-gradient(135deg, #0f1729 0%, #1a2942 100%);
-    border-radius: 16px;
-    padding: 24px;
-    min-height: 600px;
+    background: var(--bk-bg);
+    min-height: 500px;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .bracket-scroll-wrap::-webkit-scrollbar { height: 6px; }
+  .bracket-scroll-wrap::-webkit-scrollbar-track { background: #e4ebf5; }
+  .bracket-scroll-wrap::-webkit-scrollbar-thumb { background: #b0bfd4; border-radius: 3px; }
+
+  .bracket-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px 28px 32px;
+    gap: 0;
+    min-width: max-content;
     position: relative;
   }
 
-  .bracket-svg {
-    min-width: 100%;
-    height: auto;
+  /* Stage columns */
+  .bk-col {
+    display: flex;
+    flex-direction: column;
+    position: relative;
   }
 
-  .bracket-stage {
-    display: inline-block;
-    margin-right: 40px;
-    vertical-align: top;
-    min-width: 180px;
-  }
-
-  .bracket-stage-title {
+  .bk-col-header {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #94a3b8;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .bracket-matches {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .bracket-match {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(15, 111, 255, 0.3);
-    border-radius: 10px;
-    padding: 8px;
-    min-height: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .bracket-match.active {
-    background: rgba(15, 111, 255, 0.15);
-    border-color: var(--accent);
-    box-shadow: 0 0 12px rgba(15, 111, 255, 0.3);
-  }
-
-  .bracket-match.winner {
-    background: rgba(15, 159, 110, 0.15);
-    border-color: var(--green);
-  }
-
-  .bracket-team {
-    font-size: 13px;
-    padding: 4px 8px;
-    color: #e0e7ff;
-    font-weight: 600;
-  }
-
-  .bracket-team.highlighted {
-    background: rgba(15, 111, 255, 0.3);
-    border-radius: 4px;
-    color: #fff;
-  }
-
-  .bracket-vs {
     font-size: 10px;
-    color: #64748b;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bk-muted);
     text-align: center;
-    padding: 2px 0;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    padding: 0 4px;
+  }
+  .bk-col-header span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    opacity: 0.7;
   }
 
-  footer {
-    text-align: center;
-    margin-top: 28px;
-    color: var(--subtext);
+  /* Match cards */
+  .bk-match {
+    background: var(--bk-card);
+    border: 1px solid var(--bk-border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: default;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+
+  .bk-match:hover { border-color: #a8bcd4; }
+
+  .bk-match.highlight-a { border-color: var(--bk-highlight-a); box-shadow: 0 0 10px rgba(15,111,255,0.18); }
+  .bk-match.highlight-b { border-color: var(--bk-highlight-b); box-shadow: 0 0 10px rgba(217,119,6,0.2); }
+  .bk-match.highlight-both {
+    border-color: var(--bk-highlight-a);
+    box-shadow: 0 0 0 2px var(--bk-highlight-b), 0 0 18px rgba(15,111,255,0.2);
+    background: #eef5ff;
+  }
+  .bk-match.conditional-a { border-color: rgba(15,111,255,0.28); background: rgba(15,111,255,0.035); }
+  .bk-match.conditional-b { border-color: rgba(217,119,6,0.3); background: rgba(217,119,6,0.04); }
+  .bk-match.conditional-both {
+    border-color: rgba(117, 129, 150, 0.5);
+    background: linear-gradient(135deg, rgba(15,111,255,0.045), rgba(217,119,6,0.05));
+  }
+
+  /* Final match */
+  .bk-match.is-final {
+    background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%);
+    border-color: #b3cbff;
+  }
+  .bk-match.is-final .bk-match-id {
+    background: rgba(15,111,255,0.06);
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .bk-slot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 8px;
+    min-height: 28px;
+    position: relative;
+  }
+  .bk-slot + .bk-slot {
+    border-top: 1px solid var(--bk-border);
+  }
+
+  .bk-slot-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--bk-muted);
+    min-width: 28px;
+    flex: 0 0 auto;
+  }
+
+  .bk-slot-team {
     font-size: 12px;
-    line-height: 1.6;
+    font-weight: 600;
+    color: var(--bk-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
   }
 
+  .bk-slot-team.is-team-a {
+    color: #0f6fff;
+    font-weight: 700;
+  }
+  .bk-slot-team.is-team-b {
+    color: #d97706;
+    font-weight: 700;
+  }
+
+  /* Conditional (dotted) slots */
+  .bk-slot.conditional {
+    opacity: 0.45;
+  }
+  .bk-slot.conditional .bk-slot-label {
+    border-bottom: 1px dashed #b0bfd4;
+  }
+  .bk-slot.conditional .bk-slot-team {
+    font-style: italic;
+    color: var(--bk-muted);
+  }
+  .bk-slot.conditional.conditional-a { background: rgba(15,111,255,0.06); }
+  .bk-slot.conditional.conditional-b { background: rgba(217,119,6,0.07); }
+  .bk-slot.conditional.conditional-both { background: linear-gradient(90deg, rgba(15,111,255,0.06), rgba(217,119,6,0.07)); }
+
+  .bk-match-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--bk-muted);
+    padding: 2px 6px;
+    background: #f5f8fc;
+    border-bottom: 1px solid var(--bk-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bk-match-date { opacity: 0.6; }
+
+  /* Connectors via SVG overlay */
+  .bracket-svg-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .connector-line {
+    fill: none;
+    stroke: var(--bk-connector);
+    stroke-width: 1.5;
+  }
+  .connector-line.active-a {
+    stroke: var(--bk-highlight-a);
+    stroke-width: 2;
+    opacity: 0.6;
+  }
+  .connector-line.active-b {
+    stroke: var(--bk-highlight-b);
+    stroke-width: 2;
+    opacity: 0.6;
+  }
+  .connector-line.active-both {
+    stroke: url(#gradAB);
+    stroke-width: 2.5;
+    opacity: 0.8;
+  }
+  .connector-line.conditional-a {
+    stroke: var(--bk-highlight-a);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+    opacity: 0.22;
+  }
+  .connector-line.conditional-b {
+    stroke: var(--bk-highlight-b);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+    opacity: 0.24;
+  }
+  .connector-line.conditional-both {
+    stroke: url(#gradAB);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+    opacity: 0.28;
+  }
+
+  /* MOBILE: stack the bracket vertically on very small screens */
+  @media (max-width: 600px) {
+    .bk-slot-team { font-size: 11px; }
+    .bk-match-id { font-size: 7px; }
+    .bracket-inner { padding: 16px; gap: 0; }
+  }
+
+  /* Other responsive */
   @media (max-width: 820px) {
     .stages-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .fixture-card { grid-template-columns: 1fr; }
     .fixture-round { justify-self: start; }
-    .bracket-container { padding: 16px; }
-    .bracket-stage { margin-right: 20px; }
   }
 
   @media (max-width: 600px) {
@@ -495,12 +632,19 @@
     .top-actions .btn { width: 100%; }
     .panel-head { align-items: start; }
     .matchup-header { justify-content: flex-start; }
-    .bracket-stage { min-width: 140px; margin-right: 12px; }
   }
 
   @media (max-width: 380px) {
     .stages-grid { grid-template-columns: 1fr; }
     h1 { font-size: 40px; }
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 28px;
+    color: var(--subtext);
+    font-size: 12px;
+    line-height: 1.6;
   }
 </style>
 </head>
@@ -511,10 +655,10 @@
     <h1>Matchup <span>Checker</span></h1>
     <p class="subtitle">Pick two teams to see whether they can meet, the earliest possible stage, and the exact bracket logic behind the answer.</p>
     <div class="top-actions">
-      <button class="btn primary" onclick="document.getElementById('checker').scrollIntoView()">Check matchup</button>
-      <button class="btn" onclick="document.getElementById('bracket').scrollIntoView()">View bracket</button>
-      <button class="btn" onclick="document.getElementById('fixtures').scrollIntoView()">See whole fixture</button>
-      <button class="btn ghost" onclick="document.getElementById('logic').scrollIntoView()">Logic notes</button>
+      <button class="btn primary" onclick="document.getElementById('checker').scrollIntoView({behavior:'smooth'})">Check matchup</button>
+      <button class="btn" onclick="document.getElementById('bracket').scrollIntoView({behavior:'smooth'})">View bracket</button>
+      <button class="btn" onclick="document.getElementById('fixtures').scrollIntoView({behavior:'smooth'})">See whole fixture</button>
+      <button class="btn ghost" onclick="document.getElementById('logic').scrollIntoView({behavior:'smooth'})">Logic notes</button>
     </div>
   </header>
 
@@ -549,20 +693,31 @@
       <div class="verdict-dot"></div>
       <div class="verdict-text" id="verdictText"></div>
     </div>
-    <h3 class="section-title">Stage-by-stage possibility</h3>
+    <h3 class="section-title" id="possibilitiesTitle">Stage-by-stage possibility</h3>
     <div class="stages-grid" id="stagesGrid"></div>
     <div class="context-grid" id="contextGrid"></div>
   </section>
 
+  <!-- BRACKET PANEL -->
   <section class="bracket-panel" id="bracket" aria-labelledby="bracket-title">
-    <div class="panel-head">
-      <div>
-        <h2 id="bracket-title">Tournament Bracket</h2>
-        <p id="bracket-subtitle">Showing how your selected teams can progress through the tournament.</p>
+    <div class="bracket-panel-head">
+      <div class="panel-head" style="margin-bottom:0">
+        <div>
+          <h2 id="bracket-title">Tournament Bracket</h2>
+          <p id="bracket-subtitle">Select two teams above to highlight their paths through the bracket.</p>
+        </div>
+      </div>
+      <div class="bracket-legend">
+        <div class="legend-item"><div class="legend-dot team-a"></div><span id="legend-a-label">Team A path</span></div>
+        <div class="legend-item"><div class="legend-dot team-b"></div><span id="legend-b-label">Team B path</span></div>
+        <div class="legend-item"><div class="legend-dot both"></div>Possible meeting</div>
+        <div class="legend-item"><div class="legend-dot conditional"></div>Conditional slot</div>
       </div>
     </div>
-    <div class="bracket-container" id="bracketContainer">
-      <div style="color: #94a3b8; text-align: center; padding: 40px 20px;">Select two teams to view the bracket path</div>
+    <div class="bracket-scroll-wrap" id="bracketScrollWrap">
+      <div class="bracket-inner" id="bracketInner">
+        <!-- rendered by JS -->
+      </div>
     </div>
   </section>
 
@@ -606,7 +761,7 @@
       <ul class="logic-list">
         <li>Same group: the teams are guaranteed to meet in the group stage.</li>
         <li>Different groups: the checker tests every published Round of 32 slot, then follows the bracket tree through Round of 16, quarterfinals, semifinals, and final.</li>
-        <li>Third-place entries are conditional because only eight of twelve third-place teams advance, and their exact Round of 32 placement depends on the final set of qualifying third-place groups.</li>
+        <li>Third-place entries are conditional because only eight of twelve third-place teams advance, and their exact Round of 32 placement depends on the final set of qualifying third-place groups. These appear dotted/dimmed in the bracket.</li>
         <li>"Possible" means a bracket path exists. It does not predict that either team will qualify or win matches.</li>
       </ul>
     </details>
@@ -618,6 +773,9 @@
 </div>
 
 <script>
+// ============================================================
+// DATA
+// ============================================================
 const GROUPS = {
   A: { teams: ["Mexico", "South Africa", "South Korea", "Czechia"] },
   B: { teams: ["Canada", "Qatar", "Switzerland", "Bosnia-Herzegovina"] },
@@ -636,50 +794,57 @@ const GROUPS = {
 const HOSTS = new Set(["Mexico", "Canada", "USA"]);
 const STAGES = [
   { id: "group", name: "Group Stage", dates: "Jun 11-27" },
-  { id: "r32", name: "Round of 32", dates: "Jun 28-Jul 3" },
-  { id: "r16", name: "Round of 16", dates: "Jul 4-7" },
-  { id: "qf", name: "Quarterfinal", dates: "Jul 9-11" },
-  { id: "sf", name: "Semifinal", dates: "Jul 14-15" },
+  { id: "r32",   name: "Round of 32", dates: "Jun 28-Jul 3" },
+  { id: "r16",   name: "Round of 16", dates: "Jul 4-7" },
+  { id: "qf",    name: "Quarterfinal", dates: "Jul 9-11" },
+  { id: "sf",    name: "Semifinal", dates: "Jul 14-15" },
   { id: "final", name: "Final", dates: "Jul 19" }
 ];
 
+// R32 bracket slots
+// slotsA / slotsB: array of slot labels. Slot starting with "3" = conditional (third-place)
 const R32 = [
-  { id: 73, date: "Jun 28", venue: "Inglewood", a: ["2A"], b: ["2B"] },
-  { id: 74, date: "Jun 29", venue: "Foxborough", a: ["1E"], b: ["3A","3B","3C","3D","3F"] },
-  { id: 75, date: "Jun 29", venue: "Guadalupe", a: ["1F"], b: ["2C"] },
-  { id: 76, date: "Jun 29", venue: "Houston", a: ["1C"], b: ["2F"] },
-  { id: 77, date: "Jun 30", venue: "East Rutherford", a: ["1I"], b: ["3C","3D","3F","3G","3H"] },
-  { id: 78, date: "Jun 30", venue: "Arlington", a: ["2E"], b: ["2I"] },
-  { id: 79, date: "Jun 30", venue: "Mexico City", a: ["1A"], b: ["3C","3E","3F","3H","3I"] },
-  { id: 80, date: "Jul 1", venue: "Atlanta", a: ["1L"], b: ["3E","3H","3I","3J","3K"] },
-  { id: 81, date: "Jul 1", venue: "Santa Clara", a: ["1D"], b: ["3B","3E","3F","3I","3J"] },
-  { id: 82, date: "Jul 1", venue: "Seattle", a: ["1G"], b: ["3A","3E","3H","3I","3J"] },
-  { id: 83, date: "Jul 2", venue: "Toronto", a: ["2K"], b: ["2L"] },
-  { id: 84, date: "Jul 2", venue: "Inglewood", a: ["1H"], b: ["2J"] },
-  { id: 85, date: "Jul 2", venue: "Vancouver", a: ["1B"], b: ["3E","3F","3G","3I","3J"] },
-  { id: 86, date: "Jul 3", venue: "Miami Gardens", a: ["1J"], b: ["2H"] },
-  { id: 87, date: "Jul 3", venue: "Kansas City", a: ["1K"], b: ["3D","3E","3I","3J","3L"] },
-  { id: 88, date: "Jul 3", venue: "Arlington", a: ["2D"], b: ["2G"] }
+  { id: 73,  date: "Jun 28", venue: "Inglewood",      a: ["2A"],                       b: ["2B"] },
+  { id: 74,  date: "Jun 29", venue: "Foxborough",     a: ["1E"],                       b: ["3A","3B","3C","3D","3F"] },
+  { id: 75,  date: "Jun 29", venue: "Guadalupe",      a: ["1F"],                       b: ["2C"] },
+  { id: 76,  date: "Jun 29", venue: "Houston",        a: ["1C"],                       b: ["2F"] },
+  { id: 77,  date: "Jun 30", venue: "East Rutherford",a: ["1I"],                       b: ["3C","3D","3F","3G","3H"] },
+  { id: 78,  date: "Jun 30", venue: "Arlington",      a: ["2E"],                       b: ["2I"] },
+  { id: 79,  date: "Jun 30", venue: "Mexico City",    a: ["1A"],                       b: ["3C","3E","3F","3H","3I"] },
+  { id: 80,  date: "Jul 1",  venue: "Atlanta",        a: ["1L"],                       b: ["3E","3H","3I","3J","3K"] },
+  { id: 81,  date: "Jul 1",  venue: "Santa Clara",    a: ["1D"],                       b: ["3B","3E","3F","3I","3J"] },
+  { id: 82,  date: "Jul 1",  venue: "Seattle",        a: ["1G"],                       b: ["3A","3E","3H","3I","3J"] },
+  { id: 83,  date: "Jul 2",  venue: "Toronto",        a: ["2K"],                       b: ["2L"] },
+  { id: 84,  date: "Jul 2",  venue: "Inglewood",      a: ["1H"],                       b: ["2J"] },
+  { id: 85,  date: "Jul 2",  venue: "Vancouver",      a: ["1B"],                       b: ["3E","3F","3G","3I","3J"] },
+  { id: 86,  date: "Jul 3",  venue: "Miami Gardens",  a: ["1J"],                       b: ["2H"] },
+  { id: 87,  date: "Jul 3",  venue: "Kansas City",    a: ["1K"],                       b: ["3D","3E","3I","3J","3L"] },
+  { id: 88,  date: "Jul 3",  venue: "Arlington",      a: ["2D"],                       b: ["2G"] }
 ];
 
+// Bracket tree: knockout matchups feeding into each other
+// Each node: { stage, left: matchId, right: matchId }
+// For r32 nodes: { stage: "r32", slotsA, slotsB, ... }
 const TREE = {
-  104: { stage: "final", left: 101, right: 102 },
-  101: { stage: "sf", left: 97, right: 98 },
-  102: { stage: "sf", left: 99, right: 100 },
-  97: { stage: "qf", left: 89, right: 90 },
-  98: { stage: "qf", left: 93, right: 94 },
-  99: { stage: "qf", left: 91, right: 92 },
-  100:{ stage: "qf", left: 95, right: 96 },
-  89: { stage: "r16", left: 74, right: 77 },
-  90: { stage: "r16", left: 73, right: 75 },
-  91: { stage: "r16", left: 76, right: 78 },
-  92: { stage: "r16", left: 79, right: 80 },
-  93: { stage: "r16", left: 83, right: 84 },
-  94: { stage: "r16", left: 81, right: 82 },
-  95: { stage: "r16", left: 86, right: 88 },
-  96: { stage: "r16", left: 85, right: 87 }
+  104: { stage: "final",  left: 101, right: 102, date: "Jul 19",  venue: "East Rutherford" },
+  101: { stage: "sf",     left: 97,  right: 98,  date: "Jul 14",  venue: "Arlington" },
+  102: { stage: "sf",     left: 99,  right: 100, date: "Jul 15",  venue: "Atlanta" },
+  97:  { stage: "qf",     left: 89,  right: 90,  date: "Jul 9",   venue: "Foxborough" },
+  98:  { stage: "qf",     left: 93,  right: 94,  date: "Jul 10",  venue: "Inglewood" },
+  99:  { stage: "qf",     left: 91,  right: 92,  date: "Jul 11",  venue: "Miami Gardens" },
+  100: { stage: "qf",     left: 95,  right: 96,  date: "Jul 11",  venue: "Kansas City" },
+  89:  { stage: "r16",    left: 74,  right: 77,  date: "Jul 4",   venue: "Philadelphia" },
+  90:  { stage: "r16",    left: 73,  right: 75,  date: "Jul 4",   venue: "Houston" },
+  91:  { stage: "r16",    left: 76,  right: 78,  date: "Jul 5",   venue: "East Rutherford" },
+  92:  { stage: "r16",    left: 79,  right: 80,  date: "Jul 5",   venue: "Mexico City" },
+  93:  { stage: "r16",    left: 83,  right: 84,  date: "Jul 6",   venue: "Arlington" },
+  94:  { stage: "r16",    left: 81,  right: 82,  date: "Jul 6",   venue: "Seattle" },
+  95:  { stage: "r16",    left: 86,  right: 88,  date: "Jul 7",   venue: "Atlanta" },
+  96:  { stage: "r16",    left: 85,  right: 87,  date: "Jul 7",   venue: "Vancouver" }
 };
-R32.forEach(m => TREE[m.id] = { stage: "r32", slotsA: m.a, slotsB: m.b });
+R32.forEach(m => {
+  TREE[m.id] = { stage: "r32", slotsA: m.a, slotsB: m.b, date: m.date, venue: m.venue };
+});
 
 const teamInfo = {};
 Object.entries(GROUPS).forEach(([group, data]) => {
@@ -687,35 +852,84 @@ Object.entries(GROUPS).forEach(([group, data]) => {
 });
 const ALL_TEAMS = Object.keys(teamInfo).sort();
 
+// ============================================================
+// BRACKET LAYOUT — MIRRORED
+// ============================================================
+// Layout: Left side feeds inward → Final ← Right side feeds inward
+//
+// LEFT HALF  (top of bracket tree):  SF101 → QF97,98  → R16: 89,90,93,94 → R32: 74,77,73,75,83,84,81,82
+// RIGHT HALF (bottom of bracket tree): SF102 → QF99,100 → R16: 91,92,95,96 → R32: 76,78,79,80,86,88,85,87
+//
+// Column order left→right:
+//  [L-R32] [L-R16] [L-QF] [L-SF] [FINAL] [R-SF] [R-QF] [R-R16] [R-R32]
+
+// Which R32 leaves are on the LEFT half (feed into SF 101)?
+const LEFT_R32  = [74, 77, 73, 75, 83, 84, 81, 82];  // feeds R16: 89,90,93,94
+const RIGHT_R32 = [76, 78, 79, 80, 86, 88, 85, 87];  // feeds R16: 91,92,95,96
+
+// Card dimensions (px)
+const CARD_W  = 162;
+const COL_GAP = 44;
+const ROW_GAP = 8;
+
+// ============================================================
+// ANALYSIS (same logic as original)
+// ============================================================
 function groupOfSlot(slot) { return slot.slice(1); }
+function isConditionalSlot(slot) { return slot[0] === "3"; }
+function isDefiniteSlot(slot) { return !isConditionalSlot(slot); }
 function slotsForGroup(group) { return [`1${group}`, `2${group}`, `3${group}`]; }
-function slotSetForNode(nodeId) {
+
+function slotSetForNode(nodeId, includeConditional = true) {
   const node = TREE[nodeId];
-  if (node.stage === "r32") return new Set([...node.slotsA, ...node.slotsB]);
-  return new Set([...slotSetForNode(node.left), ...slotSetForNode(node.right)]);
+  if (node.stage === "r32") {
+    const slots = [...node.slotsA, ...node.slotsB];
+    return new Set(includeConditional ? slots : slots.filter(isDefiniteSlot));
+  }
+  return new Set([
+    ...slotSetForNode(node.left, includeConditional),
+    ...slotSetForNode(node.right, includeConditional)
+  ]);
 }
+
 function groupCanBeInNode(group, nodeId) {
-  return [...slotSetForNode(nodeId)].some(slot => groupOfSlot(slot) === group);
+  return [...slotSetForNode(nodeId, false)].some(s => groupOfSlot(s) === group);
 }
-function separateSlotExists(groupA, groupB, leftId, rightId) {
-  const leftSlots = [...slotSetForNode(leftId)];
-  const rightSlots = [...slotSetForNode(rightId)];
-  const aLeft = leftSlots.some(s => groupOfSlot(s) === groupA);
-  const bRight = rightSlots.some(s => groupOfSlot(s) === groupB);
-  const bLeft = leftSlots.some(s => groupOfSlot(s) === groupB);
-  const aRight = rightSlots.some(s => groupOfSlot(s) === groupA);
-  return (aLeft && bRight) || (bLeft && aRight);
+
+function separateSlotExists(groupA, groupB, leftId, rightId, includeConditional = false) {
+  const L = [...slotSetForNode(leftId, includeConditional)];
+  const R = [...slotSetForNode(rightId, includeConditional)];
+  const aL = L.some(s => groupOfSlot(s) === groupA);
+  const bR = R.some(s => groupOfSlot(s) === groupB);
+  const bL = L.some(s => groupOfSlot(s) === groupB);
+  const aR = R.some(s => groupOfSlot(s) === groupA);
+  return (aL && bR) || (bL && aR);
 }
-function r32Possible(groupA, groupB) {
+
+function r32Possible(groupA, groupB, includeConditional = false) {
   return R32.some(m => {
-    const aGroups = new Set(m.a.map(groupOfSlot));
-    const bGroups = new Set(m.b.map(groupOfSlot));
-    return (aGroups.has(groupA) && bGroups.has(groupB)) || (aGroups.has(groupB) && bGroups.has(groupA));
+    const aSlots = includeConditional ? m.a : m.a.filter(isDefiniteSlot);
+    const bSlots = includeConditional ? m.b : m.b.filter(isDefiniteSlot);
+    const aG = new Set(aSlots.map(groupOfSlot));
+    const bG = new Set(bSlots.map(groupOfSlot));
+    return (aG.has(groupA) && bG.has(groupB)) || (aG.has(groupB) && bG.has(groupA));
   });
 }
+
 function stagePossible(stage, groupA, groupB) {
-  if (stage === "r32") return r32Possible(groupA, groupB);
-  return Object.entries(TREE).some(([id, node]) => node.stage === stage && separateSlotExists(groupA, groupB, node.left, node.right));
+  const definite = stage === "r32"
+    ? r32Possible(groupA, groupB, false)
+    : Object.entries(TREE).some(([, node]) =>
+        node.stage === stage && separateSlotExists(groupA, groupB, node.left, node.right, false)
+      );
+  if (definite) return "yes";
+
+  const withThirdPlace = stage === "r32"
+    ? r32Possible(groupA, groupB, true)
+    : Object.entries(TREE).some(([, node]) =>
+        node.stage === stage && separateSlotExists(groupA, groupB, node.left, node.right, true)
+      );
+  return withThirdPlace ? "third-only" : "no";
 }
 
 function analyseMatchup(a, b) {
@@ -725,36 +939,752 @@ function analyseMatchup(a, b) {
   const sameGroup = ga === gb;
   const statuses = {};
   statuses.group = sameGroup ? "guaranteed" : "no";
-  ["r32", "r16", "qf", "sf", "final"].forEach(stage => statuses[stage] = stagePossible(stage, ga, gb) ? "yes" : "no");
+  ["r32","r16","qf","sf","final"].forEach(stage =>
+    statuses[stage] = stagePossible(stage, ga, gb)
+  );
   const earliest = STAGES.find(s => statuses[s.id] === "guaranteed" || statuses[s.id] === "yes");
-  const possible = Boolean(earliest);
-  return { a, b, ga, gb, sameGroup, statuses, earliest, possible };
+  const earliestThirdOnly = STAGES.find(s => statuses[s.id] === "third-only");
+  return {
+    a, b, ga, gb, sameGroup, statuses, earliest, earliestThirdOnly,
+    possible: Boolean(earliest),
+    possibleThirdOnly: !earliest && Boolean(earliestThirdOnly)
+  };
 }
 
-function statusLabel(status) {
-  if (status === "guaranteed") return "Guaranteed";
-  if (status === "yes") return "Possible";
-  return "No direct path";
+// ============================================================
+// BRACKET: which nodes contain a given group?
+// ============================================================
+function nodesContainingGroup(group) {
+  const result = new Set();
+  Object.entries(TREE).forEach(([id, node]) => {
+    if (groupCanBeInNode(group, Number(id))) result.add(Number(id));
+  });
+  return result;
 }
-function statusClass(status) { return status === "guaranteed" ? "guaranteed-stage" : status === "yes" ? "yes" : "no"; }
 
+// Returns true if this team's group appears in a definite 1st/2nd slot in this node's subtree.
+// (position is unknown pre-tournament — team could finish 1st, 2nd, or 3rd)
+function teamInNode(teamName, nodeId) {
+  const info = teamInfo[teamName];
+  if (!info) return false;
+  const grp = info.group;
+  function hasGroupSlot(nid) {
+    const n = TREE[nid];
+    if (!n) return false;
+    if (n.stage === 'r32') {
+      return [...(n.slotsA||[]), ...(n.slotsB||[])].some(s => isDefiniteSlot(s) && s.slice(1) === grp);
+    }
+    return hasGroupSlot(n.left) || hasGroupSlot(n.right);
+  }
+  return hasGroupSlot(nodeId);
+}
+
+function teamInConditionalNode(teamName, nodeId) {
+  const info = teamInfo[teamName];
+  if (!info) return false;
+  const grp = info.group;
+  function hasConditionalGroupSlot(nid) {
+    const n = TREE[nid];
+    if (!n) return false;
+    if (n.stage === 'r32') {
+      return [...(n.slotsA||[]), ...(n.slotsB||[])].some(s => isConditionalSlot(s) && s.slice(1) === grp);
+    }
+    return hasConditionalGroupSlot(n.left) || hasConditionalGroupSlot(n.right);
+  }
+  return hasConditionalGroupSlot(nodeId);
+}
+
+// ============================================================
+// BRACKET RENDER — MIRRORED
+// ============================================================
+// Layout (left → right):
+//  Col 0: L-R32  (8 matches: LEFT_R32, outermost left)
+//  Col 1: L-R16  (4 matches: 89,90,93,94)
+//  Col 2: L-QF   (2 matches: 97,98)
+//  Col 3: L-SF   (1 match:   101)
+//  Col 4: FINAL  (1 match:   104) — center
+//  Col 5: R-SF   (1 match:   102)
+//  Col 6: R-QF   (2 matches: 99,100)
+//  Col 7: R-R16  (4 matches: 91,92,95,96)
+//  Col 8: R-R32  (8 matches: RIGHT_R32, outermost right)
+//
+// Left side: connectors exit RIGHT edge of card → connect to parent on its RIGHT
+// Right side: connectors exit LEFT edge of card → connect to parent on its LEFT
+
+let currentMatchup = null;
+
+function buildBracketModel() {
+  const slotH = 26;
+  const hdrH = 18;
+  const cardGap = 12;
+  const padTop = 40;
+  const cardH = hdrH + 2 * slotH;
+  const leftR32Order = [74, 77, 73, 75, 83, 84, 81, 82];
+  const rightR32Order = [76, 78, 79, 80, 86, 88, 85, 87];
+  const yCenter = {};
+
+  function assignLeafY(order) {
+    let y = padTop;
+    order.forEach(id => {
+      yCenter[id] = y + cardH / 2;
+      y += cardH + cardGap;
+    });
+    return y;
+  }
+
+  const totalH = Math.max(assignLeafY(leftR32Order), assignLeafY(rightR32Order));
+
+  function computeY(nodeId) {
+    const node = TREE[nodeId];
+    if (!node) return 0;
+    if (node.stage === 'r32') return yCenter[nodeId] || 0;
+    const yL = computeY(node.left);
+    const yR = computeY(node.right);
+    yCenter[nodeId] = (yL + yR) / 2;
+    return yCenter[nodeId];
+  }
+  computeY(104);
+
+  const cols = [
+    { idx: 0, label: 'Round of 32',  dates: 'Jun 28-Jul 3', side: 'left',  matchIds: leftR32Order },
+    { idx: 1, label: 'Round of 16',  dates: 'Jul 4-7',      side: 'left',  matchIds: [89,90,93,94] },
+    { idx: 2, label: 'Quarterfinal', dates: 'Jul 9-11',     side: 'left',  matchIds: [97,98] },
+    { idx: 3, label: 'Semifinal',    dates: 'Jul 14-15',    side: 'left',  matchIds: [101] },
+    { idx: 4, label: 'Final',        dates: 'Jul 19',       side: 'center',matchIds: [104] },
+    { idx: 5, label: 'Semifinal',    dates: 'Jul 14-15',    side: 'right', matchIds: [102] },
+    { idx: 6, label: 'Quarterfinal', dates: 'Jul 9-11',     side: 'right', matchIds: [99,100] },
+    { idx: 7, label: 'Round of 16',  dates: 'Jul 4-7',      side: 'right', matchIds: [91,92,95,96] },
+    { idx: 8, label: 'Round of 32',  dates: 'Jun 28-Jul 3', side: 'right', matchIds: rightR32Order },
+  ];
+  const totalW = 9 * CARD_W + 8 * COL_GAP;
+  const colLeft = i => i * (CARD_W + COL_GAP);
+
+  const highlightA = new Set();
+  const highlightB = new Set();
+  const conditionalA = new Set();
+  const conditionalB = new Set();
+  if (currentMatchup) {
+    Object.keys(TREE).forEach(id => {
+      const nid = Number(id);
+      if (teamInNode(currentMatchup.a, nid)) highlightA.add(nid);
+      if (teamInNode(currentMatchup.b, nid)) highlightB.add(nid);
+      if (teamInConditionalNode(currentMatchup.a, nid)) conditionalA.add(nid);
+      if (teamInConditionalNode(currentMatchup.b, nid)) conditionalB.add(nid);
+    });
+  }
+
+  function matchClass(id) {
+    const a = highlightA.has(id), b = highlightB.has(id);
+    if (a && b) return 'highlight-both';
+    if (a) return 'highlight-a';
+    if (b) return 'highlight-b';
+    const ca = conditionalA.has(id), cb = conditionalB.has(id);
+    if (ca && cb) return 'conditional-both';
+    if (ca) return 'conditional-a';
+    if (cb) return 'conditional-b';
+    return '';
+  }
+
+  const cardX = {};
+  cols.forEach(col => {
+    const x = colLeft(col.idx);
+    col.matchIds.forEach(matchId => {
+      const cy = yCenter[matchId] || 0;
+      cardX[matchId] = { left: x, right: x + CARD_W, cy };
+    });
+  });
+
+  return { cardH, cardX, colLeft, cols, conditionalA, conditionalB, highlightA, highlightB, matchClass, totalH, totalW };
+}
+
+function slotRowForCanvas(slots) {
+  const isConditional = slots.every(s => s[0] === '3');
+  if (isConditional) {
+    const aGrp = currentMatchup && teamInfo[currentMatchup.a]?.group;
+    const bGrp = currentMatchup && teamInfo[currentMatchup.b]?.group;
+    const aHere = aGrp && slots.some(s => s.slice(1) === aGrp);
+    const bHere = bGrp && slots.some(s => s.slice(1) === bGrp);
+    return {
+      label: slots.length === 1 ? slots[0] : '3rd',
+      value: 'Grp ' + slots.map(s => s.slice(1)).join('/'),
+      muted: true,
+      conditional: true,
+      tint: aHere && bHere ? 'rgba(117,129,150,0.10)' : aHere ? 'rgba(15,111,255,0.07)' : bHere ? 'rgba(217,119,6,0.08)' : null
+    };
+  }
+
+  const slot = slots[0];
+  const grp = slot.slice(1);
+  const aGrp = currentMatchup && teamInfo[currentMatchup.a]?.group;
+  const bGrp = currentMatchup && teamInfo[currentMatchup.b]?.group;
+  if (aGrp === grp && bGrp === grp) return { label: slot, value: `${currentMatchup.a} / ${currentMatchup.b}`, color: '#0f6fff' };
+  if (aGrp === grp) return { label: slot, value: currentMatchup.a, color: '#0f6fff' };
+  if (bGrp === grp) return { label: slot, value: currentMatchup.b, color: '#d97706' };
+  return { label: slot, value: 'Grp ' + grp, muted: true };
+}
+
+function winnerRowForCanvas(childMatchId) {
+  const aHere = currentMatchup && teamInNode(currentMatchup.a, childMatchId);
+  const bHere = currentMatchup && teamInNode(currentMatchup.b, childMatchId);
+  if (aHere && bHere) return { label: 'W' + childMatchId, value: `${currentMatchup.a} / ${currentMatchup.b}`, color: '#0f6fff' };
+  if (aHere) return { label: 'W' + childMatchId, value: currentMatchup.a, color: '#0f6fff' };
+  if (bHere) return { label: 'W' + childMatchId, value: currentMatchup.b, color: '#d97706' };
+  return { label: 'W' + childMatchId, value: 'W' + childMatchId, muted: true };
+}
+
+function renderBracket() {
+  const inner = document.getElementById('bracketInner');
+  inner.innerHTML = '';
+
+  // ---- Y layout — dynamic card heights ----
+  const SLOT_H    = 26;  // px per slot row
+  const HDR_H     = 18;  // match-id header bar
+  const CARD_GAP  = 12;  // gap between cards in same column
+  const PAD_TOP   = 40;  // room for column headers
+
+  // Compute actual pixel height for each match card — always 2 slot rows
+  function cardHeight(matchId) {
+    return HDR_H + 2 * SLOT_H;
+  }
+
+  // Left R32 leaf order (top→bottom)
+  const LEFT_R32_ORDER  = [74, 77, 73, 75, 83, 84, 81, 82];
+  // Right R32 leaf order (top→bottom)
+  const RIGHT_R32_ORDER = [76, 78, 79, 80, 86, 88, 85, 87];
+
+  const yCenter = {}; // matchId → y-center (px)
+
+  // Assign y to R32 leaves — stack them sequentially with gap
+  function assignLeafY(order) {
+    let y = PAD_TOP;
+    order.forEach(id => {
+      const h = cardHeight(id);
+      yCenter[id] = y + h / 2;
+      y += h + CARD_GAP;
+    });
+    return y; // total height used
+  }
+
+  const leftTotalH  = assignLeafY(LEFT_R32_ORDER);
+  const rightTotalH = assignLeafY(RIGHT_R32_ORDER);
+  const TOTAL_H = Math.max(leftTotalH, rightTotalH);
+
+  // Propagate y upward from root — populates ALL nodes
+  function computeY(nodeId) {
+    const node = TREE[nodeId];
+    if (!node) return 0;
+    if (node.stage === 'r32') return yCenter[nodeId] || 0;
+    const yL = computeY(node.left);
+    const yR = computeY(node.right);
+    yCenter[nodeId] = (yL + yR) / 2;
+    return yCenter[nodeId];
+  }
+  computeY(104); // single call from root populates 101,102,97-100,89-96
+
+  // ---- Column x layout ----
+  // 9 columns: L-R32, L-R16, L-QF, L-SF, FINAL, R-SF, R-QF, R-R16, R-R32
+  const N_COLS = 9;
+  const TOTAL_W = N_COLS * CARD_W + (N_COLS - 1) * COL_GAP;
+  const colLeft = i => i * (CARD_W + COL_GAP); // left edge of column i
+
+  // Column definitions
+  const COLS = [
+    { idx: 0, label: 'Round of 32',  dates: 'Jun 28–Jul 3', side: 'left',  matchIds: LEFT_R32_ORDER },
+    { idx: 1, label: 'Round of 16',  dates: 'Jul 4–7',      side: 'left',  matchIds: [89,90,93,94] },
+    { idx: 2, label: 'Quarterfinal', dates: 'Jul 9–11',     side: 'left',  matchIds: [97,98] },
+    { idx: 3, label: 'Semifinal',    dates: 'Jul 14–15',    side: 'left',  matchIds: [101] },
+    { idx: 4, label: 'Final',        dates: 'Jul 19',       side: 'center',matchIds: [104] },
+    { idx: 5, label: 'Semifinal',    dates: 'Jul 14–15',    side: 'right', matchIds: [102] },
+    { idx: 6, label: 'Quarterfinal', dates: 'Jul 9–11',     side: 'right', matchIds: [99,100] },
+    { idx: 7, label: 'Round of 16',  dates: 'Jul 4–7',      side: 'right', matchIds: [91,92,95,96] },
+    { idx: 8, label: 'Round of 32',  dates: 'Jun 28–Jul 3', side: 'right', matchIds: RIGHT_R32_ORDER },
+  ];
+
+  // ---- Highlight sets ----
+  const highlightA = new Set();
+  const highlightB = new Set();
+  const conditionalA = new Set();
+  const conditionalB = new Set();
+  if (currentMatchup) {
+    Object.keys(TREE).forEach(id => {
+      const nid = Number(id);
+      if (teamInNode(currentMatchup.a, nid)) highlightA.add(nid);
+      if (teamInNode(currentMatchup.b, nid)) highlightB.add(nid);
+      if (teamInConditionalNode(currentMatchup.a, nid)) conditionalA.add(nid);
+      if (teamInConditionalNode(currentMatchup.b, nid)) conditionalB.add(nid);
+    });
+  }
+
+  function matchClass(id) {
+    const a = highlightA.has(id), b = highlightB.has(id);
+    if (a && b) return 'highlight-both';
+    if (a) return 'highlight-a';
+    if (b) return 'highlight-b';
+    const ca = conditionalA.has(id), cb = conditionalB.has(id);
+    if (ca && cb) return 'conditional-both';
+    if (ca) return 'conditional-a';
+    if (cb) return 'conditional-b';
+    return '';
+  }
+
+  // ---- SVG overlay ----
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.classList.add('bracket-svg-overlay');
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  // gradient for "both" connectors
+  const grad = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+  grad.setAttribute('id','gradAB'); grad.setAttribute('x1','0%'); grad.setAttribute('y1','0%');
+  grad.setAttribute('x2','100%'); grad.setAttribute('y2','0%');
+  const s1 = document.createElementNS('http://www.w3.org/2000/svg','stop');
+  s1.setAttribute('offset','0%'); s1.setAttribute('stop-color','#0f6fff');
+  const s2 = document.createElementNS('http://www.w3.org/2000/svg','stop');
+  s2.setAttribute('offset','100%'); s2.setAttribute('stop-color','#f59e0b');
+  grad.appendChild(s1); grad.appendChild(s2); defs.appendChild(grad); svg.appendChild(defs);
+
+  // Track card elements for connector drawing
+  const cardX = {}; // matchId → {left, right, cy}
+
+  // ---- Render cards ----
+  COLS.forEach(col => {
+    const x = colLeft(col.idx);
+
+    // Column header div
+    const hdr = document.createElement('div');
+    hdr.className = 'bk-col-header';
+    hdr.style.cssText = `position:absolute;left:${x}px;top:6px;width:${CARD_W}px;text-align:center;`;
+    hdr.innerHTML = `${col.label}<span>${col.dates}</span>`;
+    inner.appendChild(hdr);
+
+    col.matchIds.forEach(matchId => {
+      const node = TREE[matchId];
+      const cy = yCenter[matchId] || 0;
+      const h  = cardHeight(matchId);
+      const yTop = cy - h / 2;
+
+      const card = document.createElement('div');
+      const extraClass = matchId === 104 ? ' is-final' : '';
+      card.className = 'bk-match ' + matchClass(matchId) + extraClass;
+      card.style.cssText = `position:absolute;left:${x}px;top:${yTop}px;width:${CARD_W}px;`;
+
+      // Record card edges for connectors
+      cardX[matchId] = { left: x, right: x + CARD_W, cy };
+
+      // Header bar: match ID + date
+      const bar = document.createElement('div');
+      bar.className = 'bk-match-id';
+      bar.innerHTML = `<span>M${matchId}</span><span class="bk-match-date">${node.date||''}</span>`;
+      card.appendChild(bar);
+
+      // Slot rows
+      if (node.stage === 'r32') {
+        // Side A — always a single definite team (e.g. "1E")
+        appendR32Side(card, node.slotsA);
+        // Side B — may be multiple conditional slots (e.g. "3A/3B/3C")
+        appendR32Side(card, node.slotsB);
+      } else {
+        appendWinnerSlot(card, node.left,  highlightA, highlightB);
+        appendWinnerSlot(card, node.right, highlightA, highlightB);
+      }
+
+      inner.appendChild(card);
+    });
+  });
+
+  // ---- Set container size ----
+  inner.style.cssText = `position:relative;width:${TOTAL_W}px;height:${TOTAL_H + 16}px;`;
+  svg.setAttribute('width', TOTAL_W);
+  svg.setAttribute('height', TOTAL_H + 16);
+
+  // ---- Draw connectors ----
+  // Left side: children are to the LEFT of parent. Child right-edge → parent left-edge.
+  // Right side: children are to the RIGHT of parent. Child left-edge → parent right-edge.
+
+  function connClass(childId, parentId) {
+    const a = highlightA.has(childId) && highlightA.has(parentId);
+    const b = highlightB.has(childId) && highlightB.has(parentId);
+    if (a && b) return 'connector-line active-both';
+    if (a) return 'connector-line active-a';
+    if (b) return 'connector-line active-b';
+    const ca = conditionalA.has(childId) && conditionalA.has(parentId);
+    const cb = conditionalB.has(childId) && conditionalB.has(parentId);
+    if (ca && cb) return 'connector-line conditional-both';
+    if (ca) return 'connector-line conditional-a';
+    if (cb) return 'connector-line conditional-b';
+    return 'connector-line';
+  }
+
+  // For each non-R32 node, draw connectors to its two children
+  // Determine if this node is on left side or right side
+  const LEFT_NODES  = new Set([89,90,93,94, 97,98, 101]);
+  const RIGHT_NODES = new Set([91,92,95,96, 99,100, 102]);
+
+  function drawElbow(svg, fromX, fromY, toX, toY, cls) {
+    // S-connector: horizontal from fromX to midX, vertical midX fromY→toY, horizontal midX→toX
+    const midX = (fromX + toX) / 2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', `M${fromX} ${fromY} H${midX} V${toY} H${toX}`);
+    path.setAttribute('class', cls);
+    svg.appendChild(path);
+  }
+
+  // Left-side: child exits right, enters parent left
+  LEFT_NODES.forEach(parentId => {
+    if (!cardX[parentId]) return;
+    const node = TREE[parentId];
+    [node.left, node.right].forEach(childId => {
+      if (!cardX[childId]) return;
+      const cc = connClass(childId, parentId);
+      // from child's right edge → parent's left edge
+      drawElbow(svg,
+        cardX[childId].right, cardX[childId].cy,
+        cardX[parentId].left, cardX[parentId].cy,
+        cc
+      );
+    });
+  });
+
+  // Right-side: child exits left, enters parent right
+  RIGHT_NODES.forEach(parentId => {
+    if (!cardX[parentId]) return;
+    const node = TREE[parentId];
+    [node.left, node.right].forEach(childId => {
+      if (!cardX[childId]) return;
+      const cc = connClass(childId, parentId);
+      // from child's left edge → parent's right edge
+      drawElbow(svg,
+        cardX[childId].left, cardX[childId].cy,
+        cardX[parentId].right, cardX[parentId].cy,
+        cc
+      );
+    });
+  });
+
+  // Final (104): left SF 101 exits right → final left; right SF 102 exits left → final right
+  if (cardX[104]) {
+    // SF 101 (left) → Final left
+    if (cardX[101]) {
+      const cc = connClass(101, 104);
+      drawElbow(svg, cardX[101].right, cardX[101].cy, cardX[104].left, cardX[104].cy, cc);
+    }
+    // SF 102 (right) → Final right
+    if (cardX[102]) {
+      const cc = connClass(102, 104);
+      drawElbow(svg, cardX[102].left, cardX[102].cy, cardX[104].right, cardX[104].cy, cc);
+    }
+  }
+
+  inner.appendChild(svg);
+}
+
+function downloadBracketPng() {
+  const model = buildBracketModel();
+  const pad = 28;
+  const width = model.totalW + pad * 2;
+  const height = model.totalH + 64;
+  const scale = Math.min(2, 4096 / Math.max(width, height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(width * scale);
+  canvas.height = Math.round(height * scale);
+
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+  ctx.fillStyle = '#f0f4fa';
+  ctx.fillRect(0, 0, width, height);
+  ctx.translate(pad, 10);
+
+  function roundedRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function textFit(text, x, y, maxW) {
+    let value = String(text);
+    while (ctx.measureText(value).width > maxW && value.length > 3) {
+      value = value.slice(0, -2) + '.';
+    }
+    ctx.fillText(value, x, y);
+  }
+
+  function strokeElbow(fromX, fromY, toX, toY, style) {
+    const midX = (fromX + toX) / 2;
+    ctx.save();
+    ctx.strokeStyle = style.color;
+    ctx.lineWidth = style.width;
+    ctx.globalAlpha = style.alpha;
+    ctx.setLineDash(style.dash ? [5, 5] : []);
+    ctx.beginPath();
+    ctx.moveTo(fromX, fromY);
+    ctx.lineTo(midX, fromY);
+    ctx.lineTo(midX, toY);
+    ctx.lineTo(toX, toY);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function lineStyle(childId, parentId) {
+    const a = model.highlightA.has(childId) && model.highlightA.has(parentId);
+    const b = model.highlightB.has(childId) && model.highlightB.has(parentId);
+    if (a && b) return { color: '#7c8aa4', width: 3, alpha: 0.9 };
+    if (a) return { color: '#0f6fff', width: 2.4, alpha: 0.75 };
+    if (b) return { color: '#d97706', width: 2.4, alpha: 0.75 };
+    const ca = model.conditionalA.has(childId) && model.conditionalA.has(parentId);
+    const cb = model.conditionalB.has(childId) && model.conditionalB.has(parentId);
+    if (ca && cb) return { color: '#7c8aa4', width: 1.7, alpha: 0.35, dash: true };
+    if (ca) return { color: '#0f6fff', width: 1.7, alpha: 0.28, dash: true };
+    if (cb) return { color: '#d97706', width: 1.7, alpha: 0.3, dash: true };
+    return { color: '#c2cfe0', width: 1.5, alpha: 1 };
+  }
+
+  const leftNodes = [89,90,93,94,97,98,101];
+  const rightNodes = [91,92,95,96,99,100,102];
+  leftNodes.forEach(parentId => {
+    const parent = model.cardX[parentId];
+    const node = TREE[parentId];
+    if (!parent || !node) return;
+    [node.left, node.right].forEach(childId => {
+      const child = model.cardX[childId];
+      if (child) strokeElbow(child.right, child.cy, parent.left, parent.cy, lineStyle(childId, parentId));
+    });
+  });
+  rightNodes.forEach(parentId => {
+    const parent = model.cardX[parentId];
+    const node = TREE[parentId];
+    if (!parent || !node) return;
+    [node.left, node.right].forEach(childId => {
+      const child = model.cardX[childId];
+      if (child) strokeElbow(child.left, child.cy, parent.right, parent.cy, lineStyle(childId, parentId));
+    });
+  });
+  if (model.cardX[104] && model.cardX[101]) strokeElbow(model.cardX[101].right, model.cardX[101].cy, model.cardX[104].left, model.cardX[104].cy, lineStyle(101, 104));
+  if (model.cardX[104] && model.cardX[102]) strokeElbow(model.cardX[102].left, model.cardX[102].cy, model.cardX[104].right, model.cardX[104].cy, lineStyle(102, 104));
+
+  model.cols.forEach(col => {
+    const x = model.colLeft(col.idx);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '700 11px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(col.label, x + CARD_W / 2, 8);
+    ctx.font = '9px Arial, sans-serif';
+    ctx.fillText(col.dates, x + CARD_W / 2, 22);
+  });
+
+  function drawRow(x, y, label, value, color, muted, conditional, tint) {
+    if (tint) {
+      ctx.fillStyle = tint;
+      ctx.fillRect(x + 1, y, CARD_W - 2, 26);
+    }
+    ctx.fillStyle = muted ? '#94a3b8' : '#5f7599';
+    ctx.font = '10px Consolas, monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText(label, x + 9, y + 17);
+    ctx.fillStyle = color || (muted ? '#94a3b8' : '#1a2540');
+    ctx.font = `${conditional ? 'italic ' : ''}700 12px Arial, sans-serif`;
+    textFit(value, x + 51, y + 17, CARD_W - 58);
+  }
+
+  function drawCard(matchId) {
+    const node = TREE[matchId];
+    const box = model.cardX[matchId];
+    const x = box.left;
+    const y = box.cy - model.cardH / 2;
+    const cls = model.matchClass(matchId);
+    let border = '#d4dcea';
+    let bg = '#ffffff';
+    if (cls === 'highlight-a') border = '#0f6fff';
+    if (cls === 'highlight-b') border = '#d97706';
+    if (cls === 'highlight-both') { border = '#0f6fff'; bg = '#eef5ff'; }
+    if (cls === 'conditional-a') { border = 'rgba(15,111,255,0.35)'; bg = '#f7fbff'; }
+    if (cls === 'conditional-b') { border = 'rgba(217,119,6,0.35)'; bg = '#fffaf3'; }
+    if (cls === 'conditional-both') bg = '#fbf8f4';
+    if (matchId === 104) { border = '#b3cbff'; bg = '#eef4ff'; }
+
+    ctx.fillStyle = bg;
+    roundedRect(x, y, CARD_W, model.cardH, 8);
+    ctx.fill();
+    ctx.strokeStyle = border;
+    ctx.lineWidth = cls === 'highlight-both' ? 2 : 1;
+    ctx.stroke();
+
+    ctx.fillStyle = '#f5f8fc';
+    roundedRect(x + 1, y + 1, CARD_W - 2, 18, 7);
+    ctx.fill();
+    ctx.fillStyle = '#7a8faf';
+    ctx.font = '9px Consolas, monospace';
+    ctx.fillText('M' + matchId, x + 7, y + 13);
+    ctx.textAlign = 'right';
+    ctx.fillText(node.date || '', x + CARD_W - 7, y + 13);
+    ctx.textAlign = 'left';
+
+    const rows = node.stage === 'r32'
+      ? [slotRowForCanvas(node.slotsA), slotRowForCanvas(node.slotsB)]
+      : [winnerRowForCanvas(node.left), winnerRowForCanvas(node.right)];
+    drawRow(x, y + 18, rows[0].label, rows[0].value, rows[0].color, rows[0].muted, rows[0].conditional, rows[0].tint);
+    ctx.strokeStyle = '#d4dcea';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, y + 44);
+    ctx.lineTo(x + CARD_W, y + 44);
+    ctx.stroke();
+    drawRow(x, y + 44, rows[1].label, rows[1].value, rows[1].color, rows[1].muted, rows[1].conditional, rows[1].tint);
+  }
+
+  Object.keys(TREE).map(Number).sort((a, b) => a - b).forEach(drawCard);
+
+  const saveBlob = blob => {
+    if (!blob) {
+      alert('Could not export the bracket PNG in this browser.');
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const names = currentMatchup ? `${currentMatchup.a}-vs-${currentMatchup.b}` : 'world-cup-2026';
+    link.download = `bracket-${names}.png`.replace(/\s+/g, '-').toLowerCase();
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
+  if (canvas.toBlob) {
+    canvas.toBlob(saveBlob, 'image/png');
+  } else {
+    const link = document.createElement('a');
+    const names = currentMatchup ? `${currentMatchup.a}-vs-${currentMatchup.b}` : 'world-cup-2026';
+    link.download = `bracket-${names}.png`.replace(/\s+/g, '-').toLowerCase();
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+}
+
+// R32 side: one row showing either the definite team or collapsed conditional label
+function appendR32Side(card, slots) {
+  const isConditional = slots.every(s => s[0] === '3');
+  const div = document.createElement('div');
+  div.className = 'bk-slot' + (isConditional ? ' conditional' : '');
+
+  const lbl = document.createElement('div');
+  lbl.className = 'bk-slot-label';
+
+  const team = document.createElement('div');
+  team.className = 'bk-slot-team';
+
+  if (isConditional) {
+    // Conditional 3rd-place slots stay generic and never trigger team highlights.
+    lbl.textContent = slots.length === 1 ? slots[0] : '3rd';
+    team.textContent = 'Grp ' + slots.map(s => s.slice(1)).join('/');
+    const aGrp = currentMatchup && teamInfo[currentMatchup.a]?.group;
+    const bGrp = currentMatchup && teamInfo[currentMatchup.b]?.group;
+    const teamAInHere = aGrp && slots.some(s => s.slice(1) === aGrp);
+    const teamBInHere = bGrp && slots.some(s => s.slice(1) === bGrp);
+    if (teamAInHere && teamBInHere) div.classList.add('conditional-both');
+    else if (teamAInHere) div.classList.add('conditional-a');
+    else if (teamBInHere) div.classList.add('conditional-b');
+  } else if (slots.length === 1) {
+    const slot = slots[0];
+    const grp = slot.slice(1);
+    lbl.textContent = slot;
+    const aGrp = currentMatchup && teamInfo[currentMatchup.a]?.group;
+    const bGrp = currentMatchup && teamInfo[currentMatchup.b]?.group;
+    if (aGrp === grp && bGrp === grp) {
+      team.textContent = `${currentMatchup.a} / ${currentMatchup.b}`;
+      team.classList.add('is-team-a');
+    } else if (aGrp === grp) {
+      team.textContent = currentMatchup.a;
+      team.classList.add('is-team-a');
+    } else if (bGrp === grp) {
+      team.textContent = currentMatchup.b;
+      team.classList.add('is-team-b');
+    } else {
+      team.textContent = 'Grp ' + grp;
+      team.style.opacity = '0.55';
+    }
+  } else {
+    lbl.textContent = slots.map(s => s[0]).join('/');
+    team.textContent = 'Grp ' + slots.map(s => s.slice(1)).join('/');
+  }
+
+  div.appendChild(lbl);
+  div.appendChild(team);
+  card.appendChild(div);
+}
+
+// Winner slot for R16/QF/SF/Final: show team name only if that team has an exact slot in this child's subtree
+function appendWinnerSlot(card, childMatchId, highlightA, highlightB) {
+  const div = document.createElement('div');
+  div.className = 'bk-slot';
+
+  const lbl = document.createElement('div');
+  lbl.className = 'bk-slot-label';
+  lbl.textContent = 'W' + childMatchId;
+
+  const team = document.createElement('div');
+  team.className = 'bk-slot-team';
+
+  const aHere = currentMatchup && teamInNode(currentMatchup.a, childMatchId);
+  const bHere = currentMatchup && teamInNode(currentMatchup.b, childMatchId);
+
+  if (aHere && bHere) {
+    team.textContent = `${currentMatchup.a} / ${currentMatchup.b}`;
+    team.classList.add('is-team-a');
+  } else if (aHere) {
+    team.textContent = currentMatchup.a;
+    team.classList.add('is-team-a');
+  } else if (bHere) {
+    team.textContent = currentMatchup.b;
+    team.classList.add('is-team-b');
+  } else {
+    team.textContent = 'W' + childMatchId;
+    team.style.opacity = '0.35';
+  }
+
+  div.appendChild(lbl);
+  div.appendChild(team);
+  card.appendChild(div);
+}
+
+// ============================================================
+// MATCHUP CHECK
+// ============================================================
 function checkMatchup() {
   const a = document.getElementById("teamA").value;
   const b = document.getElementById("teamB").value;
   if (!a || !b || a === b) { alert("Select two different teams."); return; }
+
   const res = analyseMatchup(a, b);
+  currentMatchup = res;
+
+  // Update legend labels
+  document.getElementById('legend-a-label').textContent = a + ' path';
+  document.getElementById('legend-b-label').textContent = b + ' path';
+
+  // Result card
   const card = document.getElementById("resultCard");
   card.classList.add("visible");
   document.getElementById("rTeamA").textContent = a;
   document.getElementById("rTeamB").textContent = b;
 
-  const verdictBar = document.getElementById("verdictBar");
+  const verdictBar  = document.getElementById("verdictBar");
   const verdictText = document.getElementById("verdictText");
-  verdictBar.className = "verdict-bar " + (res.sameGroup ? "guaranteed" : res.possible ? "possible" : "impossible");
+  verdictBar.className = "verdict-bar " + (res.sameGroup ? "guaranteed" : (res.possible || res.possibleThirdOnly) ? "possible" : "impossible");
+
   if (res.sameGroup) {
     verdictText.innerHTML = `<strong>Guaranteed group-stage match.</strong> ${a} and ${b} are both in Group ${res.ga}. Later knockout rematches may also be possible depending on final standings.`;
   } else if (res.possible) {
-    verdictText.innerHTML = `<strong>Possible.</strong> Earliest possible meeting: <strong>${res.earliest.name}</strong>. This means a valid bracket path exists, not that the matchup is predicted to happen.`;
+    verdictText.innerHTML = `Earliest possible meeting: <strong>${res.earliest.name}</strong>. This means a valid bracket path exists, not that the matchup is predicted to happen.`;
+  } else if (res.possibleThirdOnly) {
+    verdictText.innerHTML = `Earliest conditional meeting: <strong>${res.earliestThirdOnly.name}</strong>. This route needs a third-place slot.`;
   } else {
     verdictText.innerHTML = `<strong>No valid direct bracket path found.</strong> This should be rare. Check the data source or bracket slots.`;
   }
@@ -772,112 +1702,75 @@ function checkMatchup() {
   contextGrid.innerHTML = `
     <div class="context-box">
       <div class="cbox-label">${a}</div>
-      <div class="cbox-val">Group <span class="tag">${res.ga}</span> · Draw position <span class="tag">${teamInfo[a].position}${res.ga}</span></div>
+      <div class="cbox-val">Group <span class="tag">${res.ga}</span> · Position <span class="tag">${teamInfo[a].position}${res.ga}</span></div>
     </div>
     <div class="context-box">
       <div class="cbox-label">${b}</div>
-      <div class="cbox-val">Group <span class="tag">${res.gb}</span> · Draw position <span class="tag">${teamInfo[b].position}${res.gb}</span></div>
+      <div class="cbox-val">Group <span class="tag">${res.gb}</span> · Position <span class="tag">${teamInfo[b].position}${res.gb}</span></div>
     </div>
     <div class="context-box full">
       <div class="cbox-label">Why this result?</div>
       <div class="cbox-val">${explainResult(res)}</div>
     </div>
   `;
-  card.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  
-  // Render bracket
-  renderBracketForMatchup(a, b, res);
+
+  // Re-render bracket with highlights
+  renderBracket();
+
+  // Scroll to the step-by-step result first; the bracket sits just below it.
+  setTimeout(() => {
+    document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 function explainResult(res) {
-  if (res.sameGroup) return `Same group creates a scheduled group-stage meeting. Knockout rematches depend on whether both teams qualify and enter opposite sides of a later bracket node.`;
-  const r32 = r32Possible(res.ga, res.gb);
-  if (r32) return `There is at least one Round of 32 slot pairing that can contain Group ${res.ga} and Group ${res.gb}. Third-place paths remain conditional.`;
-  return `No Round of 32 pairing directly joins these groups, so the earliest valid meeting comes when their bracket branches merge: ${res.earliest.name}.`;
+  const thirdOnlyStages = STAGES
+    .filter(stage => res.statuses[stage.id] === "third-only")
+    .map(stage => stage.name);
+
+  if (res.sameGroup) return `${res.a} and ${res.b} are in the same group, so they are already scheduled to play in the group stage. A later knockout rematch would depend on where both teams finish in the group and whether both advance.`;
+
+  const r32 = r32Possible(res.ga, res.gb, false);
+  if (r32) return `${res.a} is from Group ${res.ga} and ${res.b} is from Group ${res.gb}. Their groups have a definite Round of 32 pairing using first-place or second-place slots, so the matchup can happen without relying on the third-place system. Any faint dotted path is only an extra conditional route.`;
+
+  const r32ThirdOnly = r32Possible(res.ga, res.gb, true);
+
+  if (res.possible && r32ThirdOnly) return `${res.a} and ${res.b} can meet for sure through normal first-place or second-place slots, but not as early as the Round of 32. A Round of 32 meeting would need one of them to finish third, qualify as one of the best third-place teams, and land in the matching conditional slot. The earliest definite path is the ${res.earliest.name}.`;
+
+  if (res.possible) return `${res.a} and ${res.b} do not share a direct Round of 32 pairing. Their normal first-place or second-place paths only come together later, so the earliest definite meeting is the ${res.earliest.name}.`;
+
+  if (r32ThirdOnly) return `${res.a} and ${res.b} only line up through a third-place slot. That means one of them would have to finish third in the group, still qualify as one of the eight best third-place teams, and be placed into the correct conditional Round of 32 slot.`;
+
+  if (res.possibleThirdOnly) return `${res.a} and ${res.b} do not meet through their normal first-place or second-place routes. The only route found is conditional: one team would need to come through a third-place slot. That is why ${thirdOnlyStages.join(", ")} is marked as 3rd-place only.`;
+
+  return `No definite 1st/2nd-place branch pairing joins these groups in the current bracket data.`;
 }
 
-function renderBracketForMatchup(teamA, teamB, matchupData) {
-  const bracket = document.getElementById("bracket");
-  const bracketSubtitle = document.getElementById("bracket-subtitle");
-  bracket.classList.add("visible");
-  bracketSubtitle.textContent = `Possible paths for ${teamA} vs ${teamB}`;
-  
-  const container = document.getElementById("bracketContainer");
-  const ga = teamInfo[teamA].group;
-  const gb = teamInfo[teamB].group;
-  
-  // Build bracket HTML
-  let html = '<div style="overflow-x: auto; color: white;">';
-  
-  // Group Stage
-  if (matchupData.sameGroup) {
-    html += `
-      <div class="bracket-stage">
-        <div class="bracket-stage-title">GROUP STAGE</div>
-        <div class="bracket-matches">
-          <div class="bracket-match winner">
-            <div class="bracket-team highlighted">${teamA}</div>
-            <div class="bracket-vs">vs</div>
-            <div class="bracket-team highlighted">${teamB}</div>
-          </div>
-        </div>
-      </div>
-    `;
-  } else {
-    html += `
-      <div class="bracket-stage">
-        <div class="bracket-stage-title">GROUP STAGE</div>
-        <div class="bracket-matches">
-          <div class="bracket-match">
-            <div class="bracket-team highlighted">${teamA}</div>
-            <div class="bracket-vs">Group ${ga}</div>
-          </div>
-          <div class="bracket-match">
-            <div class="bracket-team highlighted">${teamB}</div>
-            <div class="bracket-vs">Group ${gb}</div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-  
-  // Knockout stages
-  if (!matchupData.sameGroup && matchupData.possible) {
-    const koStages = ["r32", "r16", "qf", "sf", "final"];
-    koStages.forEach(stageId => {
-      const stage = STAGES.find(s => s.id === stageId);
-      const isActive = matchupData.statuses[stageId] === "yes" || matchupData.statuses[stageId] === "guaranteed";
-      const isPossible = matchupData.statuses[stageId] !== "no";
-      
-      if (isPossible) {
-        html += `
-          <div class="bracket-stage">
-            <div class="bracket-stage-title">${stage.name.toUpperCase()}</div>
-            <div class="bracket-matches">
-              <div class="bracket-match ${isActive ? 'active' : ''}">
-                <div class="bracket-team ${isActive ? 'highlighted' : ''}">${teamA}</div>
-                <div class="bracket-vs">vs</div>
-                <div class="bracket-team ${isActive ? 'highlighted' : ''}">${teamB}</div>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-    });
-  }
-  
-  html += '</div>';
-  container.innerHTML = html;
+function statusLabel(status) {
+  if (status === "guaranteed") return "Guaranteed";
+  if (status === "yes") return "Possible";
+  if (status === "third-only") return "3rd-place only";
+  return "No direct path";
+}
+function statusClass(status) {
+  return status === "guaranteed" ? "guaranteed-stage" : status === "yes" ? "yes" : status === "third-only" ? "third-only" : "no";
 }
 
+// ============================================================
+// POPULATE SELECTS
+// ============================================================
 function populateSelects() {
   ["teamA", "teamB"].forEach((id, idx) => {
     const sel = document.getElementById(id);
-    sel.innerHTML = `<option value="">Select team</option>` + ALL_TEAMS.map(t => `<option value="${t}">${t}</option>`).join("");
+    sel.innerHTML = `<option value="">Select team</option>` +
+      ALL_TEAMS.map(t => `<option value="${t}">${t}</option>`).join("");
     sel.value = idx === 0 ? "Brazil" : "Argentina";
   });
 }
 
+// ============================================================
+// GROUPS
+// ============================================================
 function renderGroups() {
   const grid = document.getElementById("groupsGrid");
   grid.innerHTML = Object.entries(GROUPS).map(([group, data]) => `
@@ -893,11 +1786,16 @@ function renderGroups() {
   `).join("");
 }
 
+// ============================================================
+// FIXTURES
+// ============================================================
 const groupMatchdayDates = {
-  A: ["Jun 11", "Jun 18", "Jun 24"], B: ["Jun 12-13", "Jun 18", "Jun 24"], C: ["Jun 13", "Jun 19", "Jun 24"],
-  D: ["Jun 12-13", "Jun 19", "Jun 25"], E: ["Jun 14", "Jun 20", "Jun 25"], F: ["Jun 14", "Jun 20", "Jun 25"],
-  G: ["Jun 15", "Jun 21", "Jun 26"], H: ["Jun 15", "Jun 21", "Jun 26"], I: ["Jun 16", "Jun 22", "Jun 26"],
-  J: ["Jun 16", "Jun 22", "Jun 27"], K: ["Jun 17", "Jun 23", "Jun 27"], L: ["Jun 17", "Jun 23", "Jun 27"]
+  A: ["Jun 11","Jun 18","Jun 24"],    B: ["Jun 12-13","Jun 18","Jun 24"],
+  C: ["Jun 13","Jun 19","Jun 24"],    D: ["Jun 12-13","Jun 19","Jun 25"],
+  E: ["Jun 14","Jun 20","Jun 25"],    F: ["Jun 14","Jun 20","Jun 25"],
+  G: ["Jun 15","Jun 21","Jun 26"],    H: ["Jun 15","Jun 21","Jun 26"],
+  I: ["Jun 16","Jun 22","Jun 26"],    J: ["Jun 16","Jun 22","Jun 27"],
+  K: ["Jun 17","Jun 23","Jun 27"],    L: ["Jun 17","Jun 23","Jun 27"]
 };
 let activeFixtureFilter = "all";
 
@@ -905,27 +1803,34 @@ function buildFixtures() {
   const fixtures = [];
   Object.entries(GROUPS).forEach(([group, data]) => {
     const t = data.teams;
-    const pairings = [[0,1], [2,3], [0,2], [3,1], [3,0], [1,2]];
+    const pairings = [[0,1],[2,3],[0,2],[3,1],[3,0],[1,2]];
     pairings.forEach((p, i) => {
       const md = i < 2 ? 0 : i < 4 ? 1 : 2;
-      fixtures.push({
-        type: "Group", round: `Group ${group}`, date: groupMatchdayDates[group][md], title: `${t[p[0]]} vs ${t[p[1]]}`, meta: `Matchday ${md + 1} · Group ${group}`
-      });
+      fixtures.push({ type:"Group", round:`Group ${group}`, date:groupMatchdayDates[group][md], title:`${t[p[0]]} vs ${t[p[1]]}`, meta:`Matchday ${md+1} · Group ${group}` });
     });
   });
-  R32.forEach(m => fixtures.push({ type: "Knockout", round: "Round of 32", date: m.date, title: `${m.a.join('/')} vs ${m.b.join('/')}`, meta: `Match ${m.id} · ${m.venue}` }));
+  R32.forEach(m => fixtures.push({ type:"Knockout", round:"Round of 32", date:m.date, title:`${m.a.join('/')} vs ${m.b.join('/')}`, meta:`Match ${m.id} · ${m.venue}` }));
   [
-    [89,"Jul 4","Round of 16","W74 vs W77","Philadelphia"], [90,"Jul 4","Round of 16","W73 vs W75","Houston"],
-    [91,"Jul 5","Round of 16","W76 vs W78","East Rutherford"], [92,"Jul 5","Round of 16","W79 vs W80","Mexico City"],
-    [93,"Jul 6","Round of 16","W83 vs W84","Arlington"], [94,"Jul 6","Round of 16","W81 vs W82","Seattle"],
-    [95,"Jul 7","Round of 16","W86 vs W88","Atlanta"], [96,"Jul 7","Round of 16","W85 vs W87","Vancouver"],
-    [97,"Jul 9","Quarterfinal","W89 vs W90","Foxborough"], [98,"Jul 10","Quarterfinal","W93 vs W94","Inglewood"],
-    [99,"Jul 11","Quarterfinal","W91 vs W92","Miami Gardens"], [100,"Jul 11","Quarterfinal","W95 vs W96","Kansas City"],
-    [101,"Jul 14","Semifinal","W97 vs W98","Arlington"], [102,"Jul 15","Semifinal","W99 vs W100","Atlanta"],
-    [103,"Jul 18","Third-place match","Loser 101 vs Loser 102","Miami Gardens"], [104,"Jul 19","Final","W101 vs W102","East Rutherford"]
-  ].forEach(([id,date,round,title,venue]) => fixtures.push({ type: "Knockout", round, date, title, meta: `Match ${id} · ${venue}` }));
+    [89,"Jul 4","Round of 16","W74 vs W77","Philadelphia"],
+    [90,"Jul 4","Round of 16","W73 vs W75","Houston"],
+    [91,"Jul 5","Round of 16","W76 vs W78","East Rutherford"],
+    [92,"Jul 5","Round of 16","W79 vs W80","Mexico City"],
+    [93,"Jul 6","Round of 16","W83 vs W84","Arlington"],
+    [94,"Jul 6","Round of 16","W81 vs W82","Seattle"],
+    [95,"Jul 7","Round of 16","W86 vs W88","Atlanta"],
+    [96,"Jul 7","Round of 16","W85 vs W87","Vancouver"],
+    [97,"Jul 9","Quarterfinal","W89 vs W90","Foxborough"],
+    [98,"Jul 10","Quarterfinal","W93 vs W94","Inglewood"],
+    [99,"Jul 11","Quarterfinal","W91 vs W92","Miami Gardens"],
+    [100,"Jul 11","Quarterfinal","W95 vs W96","Kansas City"],
+    [101,"Jul 14","Semifinal","W97 vs W98","Arlington"],
+    [102,"Jul 15","Semifinal","W99 vs W100","Atlanta"],
+    [103,"Jul 18","Third-place match","Loser 101 vs Loser 102","Miami Gardens"],
+    [104,"Jul 19","Final","W101 vs W102","East Rutherford"]
+  ].forEach(([id,date,round,title,venue]) => fixtures.push({ type:"Knockout", round, date, title, meta:`Match ${id} · ${venue}` }));
   return fixtures;
 }
+
 const FIXTURES = buildFixtures();
 
 function setFixtureFilter(filter, btn) {
@@ -955,18 +1860,19 @@ function renderFixtures() {
   `).join("") || `<div class="context-box">No fixtures found.</div>`;
 }
 
+// ============================================================
+// INIT
+// ============================================================
 populateSelects();
 renderGroups();
 renderFixtures();
-checkMatchup();
+renderBracket(); // render blank bracket on load
+checkMatchup();  // default Brazil vs Argentina
 
 window.addEventListener("load", () => {
   window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  if (document.activeElement) {
-    document.activeElement.blur();
-  }
+  if (document.activeElement) document.activeElement.blur();
 });
-  
 </script>
 </body>
 </html>
